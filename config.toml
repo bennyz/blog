@@ -1,4 +1,4 @@
-baseurl = "bennyz.github.com"
+baseurl = "bennyz.github.io"
 title = "Technical Notes"
 canonifyurls = true
 theme = "hugo-kiera"
