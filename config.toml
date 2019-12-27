@@ -1,4 +1,34 @@
-baseURL = "http://bennyz.github.io/"
-languageCode = "en-us"
+baseurl = "bennyz.github.com"
 title = "Technical Notes"
-theme = "contrast-hugo"
+canonifyurls = true
+theme = "hugo-kiera"
+
+paginate = 3
+
+summaryLength = 30
+enableEmoji = true
+pygmentsCodeFences = true
+
+# Note: to disable a social network icon delete or comment out the corresponding line
+[author]
+    name = "Benny Zlotnik"
+    github = "bennyz"
+[params]
+    tagline = "Just a place to to keep some technical notes"
+    #images = [""] #This is used for opengraph/twitter cards.
+    customCSS = []  #Optional Customised CSS
+    #favicon = ""
+
+# uncomment to enable the Tags link on the main toolbar
+#  [[menu.main]]
+#    identifier = "tags"
+#    name = "Tags"
+#    url = "tags"
+#    weight = 1
+
+# uncomment to enable the Categories link on the main toolbar
+#  [[menu.main]]
+#    identifier = "categories"
+#    name = "Categories"
+#    url = "categories"
+#    weight = 1
