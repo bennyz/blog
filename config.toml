@@ -1,0 +1,4 @@
+baseURL = "http://bennyz.github.io/"
+languageCode = "en-us"
+title = "Technical Notes"
+theme = "contrast-hugo"
