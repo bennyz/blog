@@ -1,5 +1,5 @@
 +++
-title = "Setting Static Ip Using Libvirt"
+title = "Setting Static IP Using Libvirt"
 date = 2019-12-27T18:32:51+02:00
 draft = false
 +++
@@ -87,7 +87,7 @@ This is not to pleasant, but it mostly works fine. However, I revisited the issu
 
 ```bash
 virsh net-update default add-last ip-dhcp-host \
-'<span id="mce_SELREST_start" style="overflow:hidden;line-height:0;"></span>' \
+"<host mac='52:54:00:8a:7b:9d' name='fc_host' ip='192.168.122.45'/>" \
 --live --config
 ```
 Which I find very convenient, since I can simply do what I wanted without restarting the network and I can throw away the Python script, and my test VM definition script will now look like this:
@@ -155,7 +155,7 @@ mac_address = sys.argv[4]
 network = conn.networkLookupByName(sys.argv[2])
 flags = (libvirt.VIR_NETWORK_UPDATE_AFFECT_LIVE |
             libvirt.VIR_NETWORK_UPDATE_AFFECT_CONFIG)
-entry = "".format(
+entry = "<host mac='{}' name='{}' ip='{}'/>".format(
         mac_address, dom_name, ip_address)
 network.update(
         libvirt.VIR_NETWORK_UPDATE_COMMAND_ADD_LAST,
