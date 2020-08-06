@@ -124,7 +124,7 @@ fi
 MAC_ADDRESS=$(virsh dumpxml "${VM_NAME}" | grep "mac address" | awk -F\' '{ print $2}')
 echo "Setting IP address to ${VM_IP} for MAC address ${MAC_ADDRESS}"
 
-xml_entry=""
+xml_entry="<host mac=\"${MAC_ADDRESS}\" name=\"${VM_NAME}\" ip=\"${VM_IP}\"/>"
 if virsh net-dumpxml "${LIBVIRT_NETWORK}" | grep -q "${VM_NAME}"; then
      echo "IP address is already configured"
 else
