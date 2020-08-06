@@ -15,7 +15,7 @@ Googling around I came across the solution of simply adding the following elemen
 <host mac='52:54:00:8a:7b:9d' name='fc_host' ip='192.168.122.45'/>
 ```
 
-However, this requires recreating the network. Since I wanted the starting of my test VM to be scripted, editing the network configuration using virsh seemed quite tedious. So instead, I resorted to using the Python SDK, and came up with the following code (my Python skill is quite lacking, so it is not very good, but it does the job):
+However, this requires recreating the network. Since I wanted the starting of my test VM to be scripted, editing the network configuration using `virsh` seemed quite tedious. So instead, I resorted to using the Python SDK, and came up with the following code (my Python skill is quite lacking, so it is not very good, but it does the job):
 
 ```python
 #!/bin/python
@@ -57,7 +57,7 @@ xml_root = ET.fromstring(network_xml)
 dhcp_section = find_dhcp(xml_root)
 
 if not should_update(dhcp_section, mac_address, ip_address):
-    print("ip already configured")
+    print("IP address is already configured")
     sys.exit(0)
 
 updated_network = update_network(
@@ -96,7 +96,7 @@ Which I find very convenient, since I can simply do what I wanted without restar
 #!/bin/bash
 echo "Defining VM..."
 
-VM_NAME=${1:-"fc_host"}
+VM_NAME=${1:-"fchost"}
 LIBVIRT_NETWORK=${2:-"default"}
 VM_IP=${3:-"192.168.122.45"}
 
@@ -121,14 +121,16 @@ if [  "${fc_host_status}" == 'running' ]; then
     exit 0
 fi
 
-MAC_ADDRESS=$(virsh dumpxml "${VM_NAME}" | grep "mac address" | awk -F\' '{ print $2}')
+mac_address=$(virsh dumpxml "${VM_NAME}" | grep "mac address" | awk -F\' '{ print $2}')
 echo "Setting IP address to ${VM_IP} for MAC address ${MAC_ADDRESS}"
 
-xml_entry="<host mac=\"${MAC_ADDRESS}\" name=\"${VM_NAME}\" ip=\"${VM_IP}\"/>"
+xml_entry="<host mac=\"${mac_address}\" name=\"${VM_NAME}\" ip=\"${VM_IP}\"/>"
+
+# TODO: check both IP and MAC, since this wouldn't work if we use a new VM after previously defining one
 if virsh net-dumpxml "${LIBVIRT_NETWORK}" | grep -q "${VM_NAME}"; then
-     echo "IP address is already configured"
+    echo "IP address is already configured"
 else
-     virsh net-update default add-last ip-dhcp-host "${xml_entry}" --live --config
+    virsh net-update ${LIBVIRT_NETWORK} add-last ip-dhcp-host "${xml_entry}" --live --config
 fi
 
 echo "starting ${VM_NAME}..."
