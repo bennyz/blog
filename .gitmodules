@@ -1,6 +1,6 @@
 [submodule "public"]
 	path = public
-	url = git@github.com:bennyz/bennyz.gith
+	url = git@github.com:bennyz/bennyz.github.io.git
 	branch = master
 [submodule "themes/hugo-kiera"]
 	path = themes/hugo-kiera
