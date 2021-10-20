@@ -14,7 +14,7 @@ pygmentsCodeFences = true
     name = "Benny Zlotnik"
     github = "bennyz"
 [params]
-    tagline = "Just a place to to keep some technical notes"
+    tagline = "Just a place to keep some technical notes"
     #images = [""] #This is used for opengraph/twitter cards.
     customCSS = []  #Optional Customised CSS
     #favicon = ""
