@@ -1,34 +1,16 @@
-baseurl = "https://bennyz.github.io"
-title = "Technical Notes"
-canonifyurls = true
-theme = "hugo-kiera"
+# The URL the site will be built for
+base_url = "https://bennyz.github.io"
 
-paginate = 3
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
 
-summaryLength = 30
-enableEmoji = true
-pygmentsCodeFences = true
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
 
-# Note: to disable a social network icon delete or comment out the corresponding line
-[author]
-    name = "Benny Zlotnik"
-    github = "bennyz"
-[params]
-    tagline = "Just a place to keep some technical notes"
-    #images = [""] #This is used for opengraph/twitter cards.
-    customCSS = []  #Optional Customised CSS
-    #favicon = ""
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
 
-# uncomment to enable the Tags link on the main toolbar
-#  [[menu.main]]
-#    identifier = "tags"
-#    name = "Tags"
-#    url = "tags"
-#    weight = 1
-
-# uncomment to enable the Categories link on the main toolbar
-#  [[menu.main]]
-#    identifier = "categories"
-#    name = "Categories"
-#    url = "categories"
-#    weight = 1
+[extra]
+# Put all your custom variables here
