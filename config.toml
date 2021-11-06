@@ -10,7 +10,9 @@ build_search_index = true
 title = "Technical Notes"
 theme = "slim"
 
-taxonomies = ["tags"]
+taxonomies = [
+    {name = "tags", paginate_by = 5, rss = true}
+]
 
 [markdown]
 # Whether to do syntax highlighting
